@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppCocina.Views.EditarView"
+             Title="Editar">
+    <VerticalStackLayout>
+        <Label Text="Nombre"></Label>
+        <Entry Text="{Binding Receta.Nombre}"></Entry>
+        <Label Text="Calificacion"></Label>
+        <Entry Text="{Binding Receta.Calificacion}"></Entry>
+        <Label Text="Tiempo"></Label>
+        <Grid>
+            <Entry Text="{Binding Receta.Tiempo}"></Entry>
+            <Label Text="min" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+        </Grid>
+        <Label Text="Calificacion"></Label>
+
+        <Label Text="Foto"></Label>
+        <Entry Text="{Binding Receta.Foto}"></Entry>
+        <Label Text="Ingredientes"></Label>
+        <Entry Text="{Binding Receta.Ingredientes}"></Entry>
+        <Label Text="Preparación"></Label>
+        <Entry Text="{Binding Receta.Preparacion}"></Entry>
+
+        <Button Text="Editar" Command="{Binding EditarCommand}"></Button>
+        <Button Text="Cancelar" Command="{Binding RegresarCommand}"></Button>
+
+    </VerticalStackLayout>
+</ContentPage>

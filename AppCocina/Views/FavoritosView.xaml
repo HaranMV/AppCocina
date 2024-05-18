@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppCocina.Views.FavoritosView" FlyoutItem.IsVisible="False"
+             xmlns:Views="clr-namespace:AppCocina.Views"
+             xmlns:viewmodel="clr-namespace:AppCocina.ViewModels"
+             Shell.BackgroundColor="LightSteelBlue"
+             Background="Beige"
+             Title="{Binding Titulo}"
+             >
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding RegresarCommand}" IconImageSource="flecha.png"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <Grid>
+        <ScrollView>
+            <VerticalStackLayout>
+                <CollectionView SelectedItem="{Binding Receta}" ItemsSource="{Binding Recetas}" SelectionMode="Single" SelectionChangedCommand="{Binding Source={x:Reference PagMain}, Path=BindingContext.IrRecetaCommand}" SelectionChangedCommandParameter="{Binding .}" ItemsLayout="HorizontalGrid, 50">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout WidthRequest="400">
+                                <Label FontAttributes="Bold" Text="{Binding Nombre}" Margin="10,5,0,-5" FontSize="Title" LineBreakMode="WordWrap"></Label>
+                                <Grid RowDefinitions="auto, auto" ColumnDefinitions="*,*" Margin="15">
+                                    <Image Source="{Binding Foto}" Grid.Column="0"></Image>
+                                    <VerticalStackLayout Grid.Column="1">
+                                        <Label Text="⭐⭐⭐⭐⭐" Grid.Column="1" Margin="0,10,0,15" HorizontalOptions="Center" FontSize="Title"></Label>
+                                        <Label HorizontalOptions="Center" FontSize="Medium" LineBreakMode="WordWrap">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Tiempo: "></Span>
+                                                    <Span Text="{Binding Tiempo}"></Span>
+                                                    <Span Text=" min"></Span>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

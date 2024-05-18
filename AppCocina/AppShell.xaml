@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="AppCocina.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:AppCocina.ViewModels"
+    xmlns:views="clr-namespace:AppCocina.Views"
+    xmlns:local="clr-namespace:AppCocina"
+    Shell.FlyoutBehavior="Disabled"
+    Shell.TabBarIsVisible="False"
+    Title="AppCocina">
+
+    <Shell.BindingContext>
+        <viewmodels:RavioliViewModel></viewmodels:RavioliViewModel>
+    </Shell.BindingContext>
+
+    <Shell.FlyoutHeader>
+        <Grid RowDefinitions=".9*, .3*" ColumnDefinitions=".7*, .4*">
+            <Label Grid.Row="0" Grid.Column="0" Text="Mi Perfil" VerticalTextAlignment="Center" Margin="10,20,10,10" FontSize="Medium"></Label>
+            <Image Grid.Row="0" Grid.Column="1" Source="dotnet_bot.png" MaximumHeightRequest="80" Margin="10,20,10,10" HeightRequest="80" HorizontalOptions="End"></Image>
+
+            <Line Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1"  X1="-2" X2="400" StrokeThickness="5" Stroke="#620808"></Line>
+        </Grid>
+    </Shell.FlyoutHeader>
+
+
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+
+        <ShellContent
+        FlyoutItemIsVisible="False" NavigationPage.HasNavigationBar="False"
+        Title="Ravioli" Icon="flecha.png"
+        ContentTemplate="{DataTemplate views:MainView}"
+        Route="Main" />
+
+        <ShellContent
+         
+        ContentTemplate="{DataTemplate views:FavoritosView}"
+        Route="ListaReceta" />
+
+        
+
+        <ShellContent
+            Title="Agregar receta"
+            ContentTemplate="{DataTemplate views:AgregarView}"
+            Route="Agregar" />
+
+        <ShellContent
+            Title="Editar receta"
+            ContentTemplate="{DataTemplate views:EditarView}"
+            Route="Editar" />
+
+        <ShellContent 
+        Title="Receta"
+        ContentTemplate="{DataTemplate views:RecetaView}"
+        Route="Receta" />
+
+       
+    </FlyoutItem>
+
+    <Shell.FlyoutFooter>
+        <Grid>
+            <Label Text="Haran" Margin="10"></Label>
+            <Label Text="v.1.0.0" HorizontalOptions="End" Margin="10"></Label>
+        </Grid>
+    </Shell.FlyoutFooter>
+
+</Shell>

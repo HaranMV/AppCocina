@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppCocina.Views.AgregarView"
+             xmlns:viewmodels ="clr-namespace:AppCocina.ViewModels"
+             Title="Agregar receta"
+             Shell.BackgroundColor="LightSteelBlue"
+             Background="Beige"
+             x:DataType="viewmodels:RavioliViewModel" >
+    <VerticalStackLayout Margin="10">
+        <ScrollView>
+            <VerticalStackLayout>
+                <Label FontAttributes="Bold" Text="Nombre:"></Label>
+                <Entry  Text="{Binding Receta.Nombre}"></Entry>
+                <Label FontAttributes="Bold" Text="Calificacion:"></Label>
+                <Picker FontAttributes="Bold" ItemsSource="{Binding Estrellas}" SelectedItem="{Binding Receta.Calificacion}"></Picker>
+                <Label FontAttributes="Bold" Text="Tiempo:"></Label>
+                <Grid>
+                    <Entry Text="{Binding Receta.Tiempo}"></Entry>
+                    <Label Text="min" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+                </Grid>
+
+                <Grid>
+                </Grid>
+                <Label FontAttributes="Bold" Text="URL de la imagen:"></Label>
+                <Entry Text="{Binding Receta.Foto}"></Entry>
+                <Label FontAttributes="Bold" Text="Ingredientes:"></Label>
+                <Entry Text="{Binding Receta.Ingredientes}"></Entry>
+                <Label FontAttributes="Bold" Text="Preparación:"></Label>
+                <Entry Text="{Binding Receta.Preparacion}"></Entry>
+
+                <HorizontalStackLayout HorizontalOptions="Center">
+                    <Button Background="Black" Text="Agregar" Command="{Binding AgregarCommand}"   Margin="20"></Button>
+                    <Button Background="Black" Text="Regresar" Command="{Binding RegresarCommand}" Margin="20"></Button>
+                </HorizontalStackLayout>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </VerticalStackLayout>
+</ContentPage>

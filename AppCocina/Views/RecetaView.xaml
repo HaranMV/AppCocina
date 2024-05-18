@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppCocina.Views.RecetaView"
+             xmlns:Views="clr-namespace:AppCocina.Views"
+             xmlns:ViewModel="clr-namespace:AppCocina.ViewModels"
+             x:Name="Receta" Title="Receta"
+             Shell.BackgroundColor="LightSteelBlue"
+             Background="Beige"
+             >
+
+
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding RegresarCommand}" IconImageSource="flecha.png"></ToolbarItem>
+        <ToolbarItem Command="{Binding AddFavoritosCommand}" IconImageSource="{Binding Corazon}"></ToolbarItem>
+        <ToolbarItem Command="{Binding IrEditarCommand}" CommandParameter="{Binding Receta}" IconImageSource="editar.png" ></ToolbarItem>
+        <ToolbarItem Command="{Binding EliminarCommand}" CommandParameter="{Binding Receta}" IconImageSource="basura.png" ></ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <NavigationPage.TitleView>
+        <Slider HeightRequest="44"
+                WidthRequest="300">
+        </Slider>
+    </NavigationPage.TitleView>
+   
+    <Grid>
+
+        <ScrollView VerticalScrollBarVisibility="Always" Orientation="Vertical">
+            <VerticalStackLayout>
+
+                <Grid RowDefinitions="1*, 1*">
+                    <Image Source="{Binding Receta.Foto}" Grid.Column="0" Grid.RowSpan="2"></Image>
+                    <Border BackgroundColor="#7FF0F8FF" Grid.Row="1" VerticalOptions="End" HeightRequest="70">
+                        <Label Text="{Binding Receta.Nombre}" FontSize="30.0" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" LineBreakMode="WordWrap"></Label>
+                    </Border>
+                </Grid>
+
+
+                <Label Text="{Binding Receta.Calificacion}" FontSize="Large" HorizontalOptions="Center"></Label>
+                <Label HorizontalOptions="Center" FontSize="Medium" LineBreakMode="WordWrap">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span FontAttributes="Bold" Text="Tiempo: "></Span>
+                            <Span Text="{Binding Receta.Tiempo}"></Span>
+                            <Span Text=" min"></Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <Label Text="  Ingredientes:" FontSize="Medium" Margin="0,50,0,0" FontAttributes="Bold"></Label>
+                <Border BackgroundColor="LightGrey">
+                    <Label FontSize="Medium">
+                        <Label.FormattedText>
+                            <FormattedString>
+                             <Span Text="{Binding Receta.Ingredientes}"></Span>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Border>
+
+                <Label Text="  Preparación" FontSize="Medium" Margin="0,15,0,0" FontAttributes="Bold"> </Label>
+                <Border BackgroundColor="LightGray" Opacity="30" Grid.Row="1">
+                    <Label MaxLines="200" FontSize="Medium" Text="{Binding Receta.Preparacion}">
+
+                    </Label>
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+
+</ContentPage>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppCocina.Views.MainView"
+             xmlns:Views="clr-namespace:AppCocina.Views"
+             xmlns:ViewModel="clr-namespace:AppCocina.ViewModels"
+             Title="Inicio"
+             x:Name="PagMain">
+    <!--El binding no funciona con el datatype-->
+
+
+    <ContentPage.ToolbarItems>
+
+        <ToolbarItem IconImageSource="agregar.png" Command="{Binding IrAgregarCommand}"></ToolbarItem>
+        <ToolbarItem IconImageSource="corazontrue.png" Command="{Binding IrFavoritosCommand}"></ToolbarItem>
+        <ToolbarItem IconImageSource="lista.png" Command="{Binding  IrListaCommand}"></ToolbarItem>
+
+
+    </ContentPage.ToolbarItems>
+
+    <Grid Margin="5" RowDefinitions=".5*, .5* , .1*">
+
+        <Label Text="Receta Recomendada" FontAttributes="Bold" FontSize="Title" VerticalTextAlignment="Start" Margin="10,0,0,0"></Label>
+
+        <Image Grid.Row="0" Source="{Binding RecetaR.Foto}" MaximumHeightRequest="240" Margin="10,20,10,10" VerticalOptions="Center">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding IrRecetaRCommand}"></TapGestureRecognizer>
+            </Image.GestureRecognizers>
+        </Image>
+        
+        <Label Text="Mejores recetas calificadas" VerticalTextAlignment="End" FontSize="Title" FontAttributes="Bold" Margin="10,10,10,2"></Label>
+
+        <Line Grid.Row="1" X1="-2" X2="500" Stroke="Gray" StrokeThickness="4" ></Line>
+
+        <ScrollView Grid.Row="1" HorizontalScrollBarVisibility="Always" WidthRequest="400" Orientation="Horizontal" Margin="0,15,0,0">
+
+            <CollectionView SelectedItem="{Binding Receta}" ItemsSource="{Binding Recetas}" SelectionMode="Single" SelectionChangedCommand="{Binding Source={x:Reference PagMain}, Path=BindingContext.IrRecetaCommand}" SelectionChangedCommandParameter="{Binding .}"  ItemsLayout="HorizontalGrid, 1">
+                
+
+                    <!--<CollectionView.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding IrRecetaCommand}" CommandParameter="{Binding .}"></TapGestureRecognizer>
+                </CollectionView.GestureRecognizers>-->
+
+                <CollectionView.ItemTemplate>
+
+                    <DataTemplate>
+                        <Grid RowDefinitions=".5*, .1*, .1*" HeightRequest="270" WidthRequest="250" Margin="15" Padding="10">
+                            <Image Source="{Binding Foto}" Grid.Column="0"></Image>
+                            <Label Text="{Binding Calificacion}" Grid.Row="1" FontSize="Large" Grid.Column="0" VerticalTextAlignment="End" HorizontalOptions="CenterAndExpand"></Label>
+                            <Label Text="{Binding Nombre}" Grid.Row="2"  FontSize="Large" HorizontalTextAlignment="Center" MaximumWidthRequest="300" LineBreakMode="WordWrap"></Label>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+   
+        </ScrollView>
+
+    </Grid>
+</ContentPage>
